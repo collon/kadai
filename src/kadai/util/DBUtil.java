@@ -28,13 +28,13 @@ public class DBUtil {
 		}
 		
 		try {
-			this.conn = DriverManager.getConnection(dbname,user,passwd);
+			conn = DriverManager.getConnection(dbname,user,passwd);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return this.conn;
+		return conn;
 	}
 	
 	public void closeConn(){

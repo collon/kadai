@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="kadai.beans.Kadai" %>
+<%@ page import="kadai.beans.TaskList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,8 +17,14 @@
 <%= request.getContextPath() %>
 <BR>
 <%= ((Kadai)request.getAttribute("one")).getTitle() %>
-<%= request.getAttribute("two") %>
+<%= ((TaskList)request.getAttribute("list")).getList(request.getParameter("userid")) %>
 
+<table border="1">
+<% TaskList ichiran = (TaskList)request.getAttribute("list"); %>
+<% for ( int i=0; i < ichiran.size() ;i++ ){ %>
+<tr><Td><%= ichiran.get(i).getUserid() %> : <%= ichiran.get(i).getTitle() %></Td></tr>
+<% } %>
+</table>
 <form action="Insert" method="post">
 <br />
 <table width="200">

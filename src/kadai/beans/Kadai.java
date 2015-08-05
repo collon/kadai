@@ -19,7 +19,6 @@ public class Kadai {
 	
 	//SQLÅ@óp
 	Connection conn; 
-	
 	DBUtil dbutil;
 	
 	/**
@@ -43,34 +42,6 @@ public class Kadai {
 		this.userid = userid;
 		this.title = title;
 		this.sortid = sortid;
-		
-	}
-	
-	public void opendb (){
-		
-		try {
-			
-			
-			try {
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			this.conn = DriverManager.getConnection("jdbc:mysql://localhost/test","test1","test1");
-			System.out.println("OK");
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	private void closedb() throws SQLException{
-		this.conn.close();
 	}
 	
 	/**
@@ -79,18 +50,16 @@ public class Kadai {
 	 */
 	public void entry() throws Exception{
 		
-		this.opendb();
-		
-		this.dbutil = new DBUtil();
 
-		this.dbutil.getConn();
+		this.dbutil = new DBUtil();
+		this.conn = this.dbutil.getConn();
 		
 		Statement stmt = this.conn.createStatement();
 		String sql = "insert into tasks (userid,title) values ('" + this.getUserid()+"','"+ this.getTitle() + "') ";
 		System.out.println(sql);
 		stmt.executeUpdate(sql);
 		
-		this.closedb();
+		this.conn.close();
 		
 	}
 	
