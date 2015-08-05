@@ -32,6 +32,8 @@ public class InsertTaskServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		
+		
 		Kadai one = new Kadai(2, request.getParameter("userid"),request.getParameter("title"),4);
 		TaskList list = new TaskList();
 		
@@ -42,10 +44,7 @@ public class InsertTaskServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		list.load("yamada");
 		list.addList(one);
-		list.getList("yamada");
-		
 		request.setAttribute("one", one);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("kadailist.jsp").forward(request, response);

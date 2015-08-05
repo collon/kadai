@@ -30,7 +30,7 @@
 <table width="200">
 <tr>
 <td width="100">userid</td>
-<td><input type="text" width="80" name="userid" />
+<td><input type="text" width="80" name="userid" value=" <%= request.getParameter("userid") %>" />
 </tr>
 <tr>
 <td width="100">title</td>

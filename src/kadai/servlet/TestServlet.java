@@ -30,11 +30,15 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Kadai one = new Kadai(1,request.getParameter("userid"),"title",1);
+		String userid = request.getParameter("userid");
+		
+		Kadai one = new Kadai(1,userid,"title",1);
+		TaskList list = new TaskList();
+
+		list.load(userid);
 	
-		request.setAttribute("txt", "YAMADA");
 		request.setAttribute("one", one);
-		request.setAttribute("two", one);
+		request.setAttribute("list", list);
 //		response.sendRedirect("kadailist.jsp");
 		request.getRequestDispatcher("kadailist.jsp").forward(request, response);
 		
