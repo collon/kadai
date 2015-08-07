@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tlist</title>
+	<style>
+		@import "/kadai/dojo/dojo/resources/dojo.css";
+		@import "/kadai/dojo/dijit/themes/claro/claro.css";
+		@import "/kadai/app/layout.css";
+	</style>
+	<script>
+		dojoConfig = {
+			parseOnLoad: false,
+			async: true,
+			baseUrl: "/kadai",
+			packages: [{
+				name: "dojo",
+				location: "dojo/dojo"
+			}, {
+				name: "dijit",
+				location: "dojo/dijit"
+			}, {
+				name: "dojox",
+				location: "dojo/dojox"
+			}, {
+				name: "bootstrap",
+				location: "Dojo-Bootstrap"
+			}, {
+				name: "app",
+				location: "app"
+			}]
+		};
+	</script>
+	<script src="dojo/dojo/dojo.js"></script>
+	<script src="app/index.js"></script>
+</head>
+<body class="claro">
+	<div id="divLoading"><span>loading...</span></div>
+</body>
+</html>
