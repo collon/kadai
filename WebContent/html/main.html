@@ -1,5 +1,5 @@
-	<nav class="navbar navbar-default navbar-fixed-top navbar-offset">
-		<div class="container-fluid">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
 			<!-- ヘッダー情報 -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#divNavbar" aria-expanded="false" aria-controls="divNavbar">
@@ -12,17 +12,14 @@
 			</div>
 			<!-- リスト配置 -->
 			<div id="divNavbar" class="collapse navbar-collapse">
-				<!-- TODO: 消す <button type="button" id="btnTest" class="btn btn-default navbar-btn">テストボタン（リストが変わります）</button> -->
-				<button type="button" class="btn navbar-btn glyphicon glyphicon-search" aria-hidden="true"></button>
-				<button type="button" class="btn navbar-btn glyphicon glyphicon-plus" aria-hidden="true"></button>
-				<ul id="ulNavRight" class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">ようこそmiuraさん。</p></li>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 							あなたのタスク一覧
 							<span class="caret"></span>
 						</a>
-<!-- テストコード：本来はサーバーから取得したリストを表示する -->
+<!-- TODO: 削除予定。本来はサーバーから取得したリストを表示する -->
 						<ul class="dropdown-menu">
 							<li><a>課題管理</a></li>
 							<li><a>設備ツール管理</a></li>
@@ -34,6 +31,10 @@
 			</div>
 		</div>
 	</nav>
+	<div id="divListFunc" class="container">
+		<a class="btn btn-success"><i class="fa fa-search"></i> search</a>
+		<a class="btn btn-success"><i class="fa fa-plus"></i> add</a>
+	</div>
 	<div class="container scrollable">	<!-- TODO: リストが長い場合、ヘッダは固定して tbody のみスクロールしたい -->
 		<div id="divContent"></div>
 	</div>

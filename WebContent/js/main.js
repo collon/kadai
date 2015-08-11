@@ -13,6 +13,9 @@ $(function () {
 		tableContent += '<th>First Name</th>';
 		tableContent += '<th>Last Name</th>';
 		tableContent += '<th>Score</th>';
+		for (var j = 0; j < 30; ++j) {
+			tableContent += '<th>column' + j + '</th>';
+		}
 		tableContent += '</tr>';
 		tableContent += '</thead>';
 		tableContent += '<tbody>';
@@ -22,6 +25,9 @@ $(function () {
 			tableContent += '<td>' + _testFirstName + i + '</td>';
 			tableContent += '<td>' + _testLastName + i + '</td>';
 			tableContent += '<td>' + _testScore + '</td>';
+			for (var j = 0; j < 30; ++j) {
+				tableContent += '<td>data' + i + '-' + j + '</td>';
+			}
 			tableContent += '</tr>';
 		}
 		tableContent += '</tbody>';

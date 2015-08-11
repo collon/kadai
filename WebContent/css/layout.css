@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-	padding-top: 70px;
+	padding-top: 90px;
 }
 
 #divLoading {
@@ -14,19 +14,12 @@ body {
 	left: 0;
 }
 
-.navbar-offset {
-	top: 0;
-}
-
 .dropdown-menu li:hover {
 	cursor: pointer;
 }
 
-#ulNavRight {
-	/*
-	 * ナビの右寄せメニューの右側に余白をつける
-	 */
-	margin-right: 0;
+#divListFunc {
+	margin-bottom: 10px;
 }
 
 .scrollable {
