@@ -33,5 +33,25 @@ $(function () {
 		tableContent += '</tbody>';
 		tableContent += '</table>';
 		$divContent.html(tableContent);
+		
+		// アクションテスト
+		var $btnSearch = $('#btnSearch');
+		$btnSearch.on({
+			click: function () {
+				$.ajax({
+					type: 'GET',
+					url: '/kadai/MiuTestDriver',
+					data: {
+						requestAction: 'getUserInfo',
+						requestParam: JSON.stringify({
+							arrayUserId: [ 'user01', 'user02' ]
+						})
+					},
+					success: function (data) {
+						alert(data);
+					}
+				});
+			}
+		});
 	});
 });

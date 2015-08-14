@@ -1,3 +1,15 @@
+関係ないメモ
+  <servlet>
+  	<servlet-name>MiuTestDriver</servlet-name>
+  	<servlet-class>kadai.servlet.MiuTestDriver</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MiuTestDriver</servlet-name>
+  	<url-pattern>/MiuTestDriver</url-pattern>
+  </servlet-mapping>
+
+
+
 
 ※懸念事項
 各リストの項目情報をどう管理するか？
