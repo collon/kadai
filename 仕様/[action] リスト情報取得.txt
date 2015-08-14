@@ -4,19 +4,19 @@
 複数のリスト情報も取得可能	// 一応、マルチオープンも見据えて
 
 *** リクエスト ***
-listId: リストidの配列
+strListId: リストidの配列
 	※リストidはシステム一意とする
 	　プライベートリスト、共有リストの実現のため。
-start: 取得開始行数	// 0相対, def: 0
-rows: 取得行数	// 負数の場合、すべて取得する, def: -1
-sortId: ソート基準カラムid, def: id
+numStart: 取得開始行数	// 0相対, def: 0
+numRows: 取得行数	// 負数の場合、すべて取得する, def: -1
+strSortId: ソート基準カラムid, def: id
 
 例
 {
-	listId: '00001-todo-list',
-	start: 0,
-	rows: 50,
-	sortId: 'First Name'
+	strListId: '00001-todo-list',
+	numStart: 0,
+	numRows: 50,
+	strSortId: 'First Name'
 }
 
 

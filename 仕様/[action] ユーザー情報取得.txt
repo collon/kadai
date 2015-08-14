@@ -1,0 +1,47 @@
+
+*** 概要 ***
+ユーザー情報を取得する
+・（表示可能な）リスト一覧を取得する
+	ログイン後にドロップダウンメニューに表示するために使用
+	また、リストの内容を取得する時に、ここで取得したidを指定する
+
+*** 懸念 ***
+複数ユーザー情報を指定して、複数ユーザーの情報を取得できる必要があるか？
+
+
+*** リクエスト ***
+arrayUserId: ユーザーid（文字列）のリスト
+
+例
+{
+	arrayUserId: [ 'user01', 'user02, ... ]
+}
+
+*** レスポンス ***
+arrayUserInfo: リスト情報一覧オブジェクトの配列
+	リスト一覧情報オブジェクト
+	strUserId: ユーザーid
+	arrayListInfo: リスト情報
+		リスト情報
+		strListId: リストの識別id
+		strListName: リスト名称
+
+例
+{
+	arrayUserInfo: [
+		{
+			strUserId: 'user01',
+			arrayListInfo: [
+				{ strListId: '00001-todo', strListName: 'TODOリスト' },
+				{ strListId: '01001-kadai', strListName: '課題管理' }
+			]
+		},
+		{
+			strUserId: 'user02',
+			arrayListInfo: [
+				{ strListId: '01001-kadai', strListName: '課題管理' }
+			]
+		},
+		:
+	]
+}
