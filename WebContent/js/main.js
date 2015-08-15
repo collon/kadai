@@ -34,21 +34,51 @@ $(function () {
 		tableContent += '</table>';
 		$divContent.html(tableContent);
 		
-		// アクションテスト
+		// アクションのテスト (とりあえずsearchボタンで動作)
+		// content-typeをapplication/jsonにすると、サーブレット側での解析が面倒くさそう（まだうまくいってない）
 		var $btnSearch = $('#btnSearch');
 		$btnSearch.on({
 			click: function () {
 				$.ajax({
-					type: 'GET',
+					type: 'POST',
 					url: '/kadai/MiuTestDriver',
+					contentType: 'application/json',
 					data: {
 						requestAction: 'getUserInfo',
-						requestParam: JSON.stringify({
+						requestParam: {
 							arrayUserId: [ 'user01', 'user02' ]
-						})
+						}
 					},
 					success: function (data) {
-						alert(data);
+						alert(data.arrayUserInfo);
+					}
+				});
+			}
+		});
+		
+		// JSONICのRPCServletでの通信テスト
+		var $btnAdd = $('#btnAdd');
+		$btnAdd.on({
+			click: function () {
+				$.ajax({
+					type: 'POST',
+					url: '/kadai/MiuTest.json',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						jsonrpc: '2.0',
+						method: 'test01',
+						params: null,
+						id: 0
+					}),
+					success: function (res) {
+						if (res.error) {
+							console.log(res.error.message);
+							console.log(res.error.data);
+							return;
+						}
+						console.log(res);
+						console.log(res.result);
+						alert(JSON.stringify(res.result, null, '\t'))
 					}
 				});
 			}
