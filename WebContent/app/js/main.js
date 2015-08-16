@@ -1,7 +1,34 @@
-require(['jquery', 'text!html/main.html', 'domReady!'], function ($, html) {
+require([
+         'jquery',
+         'text!html/main.html',
+         'domReady!'
+], function ($, html) {
 	// bodyにmain.htmlの内容を貼り付ける
 	$(document.body).html(html);
-
+	
+	/*
+	require(['js/modules/TestModule'], function (TestModule) {
+		TestModule();
+	});
+	/**/
+	
+	/*
+	reuire([
+	        'js/modules/UserInfo'
+	], function (UserInfo) {
+		UserInfo.get(userId, function () {
+			// 成功
+			// リスト選択メニュー更新
+			
+			// 前回値も見て、初期表示するリストの情報を取得する
+			//  --> 別モジュールにする？
+		}, function () {
+			// 失敗
+			alert();
+		});
+	});
+	/**/
+	
 	// === 以下テストコード ===
 	// テストテーブル表示処理
 	var $divContent = $('#divContent'),
@@ -50,10 +77,9 @@ require(['jquery', 'text!html/main.html', 'domReady!'], function ($, html) {
 				},
 				data: JSON.stringify({
 					arrayUserId: [ 'user01', 'user02' ]
-				}),
-				success: function (data) {
-					alert(JSON.stringify(data, null, '\t'));
-				}
+				})
+			}).done(function (data) {
+				console.log(data);
 			});
 		}
 	});

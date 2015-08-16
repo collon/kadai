@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
 	paths: {
 		'jquery': 'lib/jquery-2.1.4.min',
 		'jquery.bootstrap': 'lib/bootstrap.min',
