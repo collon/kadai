@@ -12,20 +12,30 @@ require([
 	});
 	/**/
 	
-	/*
-	reuire([
-	        'js/modules/UserInfo'
-	], function (UserInfo) {
-		UserInfo.get(userId, function () {
-			// 成功
-			// リスト選択メニュー更新
-			
-			// 前回値も見て、初期表示するリストの情報を取得する
-			//  --> 別モジュールにする？
-		}, function () {
-			// 失敗
-			alert();
-		});
+	/* テストコード */
+	var $btnAdd = $('#btnAdd');
+	$btnAdd.on({
+		click: function () {
+			require([
+				'js/global',
+				'js/modules/UserInfo'
+			], function (g, UserInfo) {
+				if (! g.userInfo) {	// この前にuserInfoが生成される可能性がなければ、このifブロックは削除する
+					g.userInfo = new UserInfo('miura');
+				}
+				g.userInfo.getInfo(function (res) {	// ユーザー情報を取得
+					// 成功
+					// リスト選択メニュー更新
+					
+					// 前回値も見て、初期表示するリストの情報を取得する
+					//  --> 別モジュールにする？
+					alert(JSON.stringify(res, null, '\t'));
+				}, function () {
+					// 失敗
+					alert(this.message);
+				});
+			});
+		}
 	});
 	/**/
 	
@@ -85,6 +95,7 @@ require([
 	});
 	
 	// JSONICのRPCServletでの通信テスト
+	/*
 	var $btnAdd = $('#btnAdd');
 	$btnAdd.on({
 		click: function () {
@@ -111,4 +122,5 @@ require([
 			});
 		}
 	});
+	*/
 });

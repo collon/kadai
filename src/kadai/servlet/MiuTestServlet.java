@@ -23,7 +23,8 @@ public class MiuTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static class GetUserInfoRequest {
-		public List<String> arrayUserId = null;
+		// public List<String> arrayUserId = null;
+		public String userId = null;
 	}
 	private class MiuDataResponse {
 		public String name = null;
@@ -63,7 +64,7 @@ public class MiuTestServlet extends HttpServlet {
 		switch (strAction) {
 		case "getUserInfo":
 			GetUserInfoRequest requestParam = mapper.readValue(body, GetUserInfoRequest.class);
-			System.out.println(requestParam.arrayUserId.toString());
+			System.out.println(requestParam.userId);
 			break;
 		}
 		

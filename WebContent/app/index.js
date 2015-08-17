@@ -16,7 +16,8 @@ require.config({
 });
 
 require([
-], function () {
+         'js/global'
+], function (g) {
 	// ほんとは、ここでいろいろとinitializeな処理が必要、なはず
 	// ブラウザーチェックとか？
 	// その他、このアプリを使用できない場合のチェック処理

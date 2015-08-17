@@ -1,8 +1,12 @@
 define([
         'jquery',
-        'js/modules/ajax'
-], function ($, ajax) {
+        'js/modules/xhr'
+], function ($, xhr) {
 	var UserInfo = function (userId) {	// constructor
+		/**
+		 * xhrオブジェクト
+		 */
+		this.xhr = new xhr();
 		/**
 		 * アクションステータス
 		 */
@@ -30,22 +34,26 @@ define([
 				// ユーザーidがない
 				throw new Error('ユーザーが指定されていません');
 			}
-			ajax(
+			_this.xhr.ajax(
 				'getUserInfo',
 				{ userId: this.userId },
+				null,
 				function (res) {
 					try {
 						if (! $.isPlainObject(res)) {
 							// オブジェクトじゃない
-							throw new Error('取得したデータ異常（オブジェクトじゃない）');
+							throw new Error('取得したデータが異常（オブジェクトじゃない）');
 						}
+						/*
 						if (! ('arrayListInfo' in res && $.isArray(res.arrayListInfo))) {
 							// arrayListInfoがない || 配列じゃない
-							throw new Error('取得したデータ異常（arrayListInfo情報異常）');
+							throw new Error('取得したデータが異常（arrayListInfo情報異常）');
 						}
-						this.arrayListInfo = res.arrayListInfo;
+						_this.arrayListInfo = res.arrayListInfo;
+						*/
+						_this.status = 0;
 						if ($.isFunction(success)) {
-							success.call(_this, data);
+							success.call(_this, res);
 						}
 					} catch (e) {
 						_this.status = -1;
@@ -56,7 +64,11 @@ define([
 					}
 				},
 				function () {
-					_this.status = null;	// どう設定する
+					_this.status = this.status;
+					_this.message = this.message;
+					if ($.isFunction(error)) {
+						error.call(_this);
+					}
 				}
 			);
 		} catch (e) {
