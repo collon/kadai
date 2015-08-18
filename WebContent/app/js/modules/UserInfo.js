@@ -31,7 +31,7 @@ define([
 		var _this = this;
 		try {
 			if (! _this.userId) {
-				// ユーザーidがない
+				// ユーザーidが設定されていない
 				throw new Error('ユーザーが指定されていません');
 			}
 			_this.xhr.ajax(

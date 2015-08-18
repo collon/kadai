@@ -50,7 +50,6 @@ public class MiuTestServlet extends HttpServlet {
 		
 		// カスタムヘッダーからアクション名を取得
 		String strAction = request.getHeader("x-custom-action-id");
-		
 		if (strAction == null) {
 			// アクション名がない：異常
 			return;
