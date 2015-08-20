@@ -4,6 +4,7 @@ require([
          'domReady!'
 ], function ($, html) {
 	// bodyにmain.htmlの内容を貼り付ける
+	// TODO: 本来は、ログイン画面の削除が必要なはず
 	$(document.body).html(html);
 	
 	/*

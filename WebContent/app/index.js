@@ -1,6 +1,7 @@
 require.config({
 	paths: {
 		'jquery': 'lib/jquery-2.1.4.min',
+		'jquery-ui': 'lib/jquery-uimin',
 		'jquery.bootstrap': 'lib/bootstrap.min',
 		'text': 'lib/text',
 		'domReady': 'lib/domReady',
@@ -10,6 +11,9 @@ require.config({
 	},
 	shim: {
 		'jquery.bootstrap': {
+			deps: ['jquery']
+		},
+		'jquery-ui': {
 			deps: ['jquery']
 		}
 	}

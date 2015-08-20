@@ -40,8 +40,8 @@ define([
 				null,
 				function (res) {
 					try {
+						// 取得データのチェック（念のため）
 						if (! $.isPlainObject(res)) {
-							// オブジェクトじゃない
 							throw new Error('取得したデータが異常（オブジェクトじゃない）');
 						}
 						/*
