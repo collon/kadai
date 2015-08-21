@@ -9,25 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
+  <servlet>
+    <servlet-name>Category</servlet-name>
+    <servlet-class>kadai.servlet.TaskCategoryListServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>Test</servlet-name>
     <servlet-class>kadai.servlet.TestServlet</servlet-class>
   </servlet>
-
-  <servlet>    
+  <servlet>
     <servlet-name>Insert</servlet-name>
     <servlet-class>kadai.servlet.InsertTaskServlet</servlet-class>
   </servlet>
-
+  <servlet-mapping>
+    <servlet-name>Category</servlet-name>
+    <url-pattern>/Category</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>Insert</servlet-name>
     <url-pattern>/Insert</url-pattern>
   </servlet-mapping>
-  
 </web-app>

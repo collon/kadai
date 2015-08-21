@@ -5,6 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script>
+
+window.onload = setComment();
+
+function setComment() {
+//	alert("pop");
+//	document.form_insert["title.value"].value ="test";
+	var _txtTitle = document.getElementById('txtTitle');
+	_txtTitle.value = "hogehoge";
+}
+
+</script>
 <title>kadai list</title>
 </head>
 
@@ -13,28 +26,29 @@
 <hr>
 <h3>TEST KADAI SYSTEM</h3>
 <hr>
-
 <%= request.getContextPath() %>
 <BR>
-<%= ((Kadai)request.getAttribute("one")).getTitle() %>
-<%= ((TaskList)request.getAttribute("list")).getList(request.getParameter("userid")) %>
-
 <table border="1">
 <% TaskList ichiran = (TaskList)request.getAttribute("list"); %>
+<form action="" method="post"> 
+<tr><th><input type="button" value="del" /></th><th>User</th><th>comment</th></tr>
 <% for ( int i=0; i < ichiran.size() ;i++ ){ %>
-<tr><Td><%= ichiran.get(i).getUserid() %> : <%= ichiran.get(i).getTitle() %></Td></tr>
+<tr><td><input type="checkbox" name="id" value="<%= ichiran.get(i).getId() %>" ></td>
+   <Td><%= ichiran.get(i).getUserid() %></td><td>&nbsp;<%= ichiran.get(i).getTitle() %></Td></tr>
 <% } %>
 </table>
-<form action="Insert" method="post">
+</form>
+
+<form action="Insert" method="post" name="form_insert">
 <br />
 <table width="200">
 <tr>
 <td width="100">userid</td>
-<td><input type="text" width="80" name="userid" value=" <%= request.getParameter("userid") %>" />
+<td><input type="text" width="80" name="userid" value="<%= session.getAttribute("user") %>" />
 </tr>
 <tr>
 <td width="100">title</td>
-<td><input type="text" width="80" name="title" />
+<td><input type="text" width="80" name="title" value="" id="txtTitle"/>
 </tr>
 </table>
 

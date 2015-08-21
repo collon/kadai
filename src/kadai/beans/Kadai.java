@@ -16,6 +16,7 @@ public class Kadai {
 	private String  userid;
 	private String  title;
 	private int     sortid;
+	private String  taskCategoryId;
 	
 	//SQLÅ@óp
 	Connection conn; 
@@ -36,12 +37,14 @@ public class Kadai {
 	 * @param title
 	 * @param sortid
 	 */
-	public Kadai(int id, String userid, String title, int sortid) {
+	public Kadai(int id, String userid, String title, int sortid,String taskCategoryId) {
 		super();
 		this.id = id;
 		this.userid = userid;
 		this.title = title;
 		this.sortid = sortid;
+		this.taskCategoryId =taskCategoryId;
+		
 	}
 	
 	/**
@@ -55,7 +58,9 @@ public class Kadai {
 		this.conn = this.dbutil.getConn();
 		
 		Statement stmt = this.conn.createStatement();
-		String sql = "insert into tasks (userid,title) values ('" + this.getUserid()+"','"+ this.getTitle() + "') ";
+		String sql = "insert into tasks (userid,title,sortId,taskCategoryId) values ('"
+		+ this.getUserid()+"','"+ this.getTitle() + "'," + this.sortid 
+		+ ",'" + this.taskCategoryId + "') ";
 		System.out.println(sql);
 		stmt.executeUpdate(sql);
 		
@@ -86,6 +91,13 @@ public class Kadai {
 	}
 	public void setSortid(int sortid) {
 		this.sortid = sortid;
+	}
+	public String getTaskCategoryId() {
+		return taskCategoryId;
+	}
+
+	public void setTaskCategoryId(String taskCategoryId) {
+		this.taskCategoryId = taskCategoryId;
 	}
 
 }

@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kadai.beans.*;
+
 
 /**
  * Servlet implementation class TestServlet
@@ -36,7 +38,9 @@ public class TestServlet extends HttpServlet {
 		TaskList list = new TaskList();
 
 		list.load(userid);
-	
+
+		HttpSession session = request.getSession();
+		session.setAttribute("user", request.getParameter("userid"));
 		request.setAttribute("one", one);
 		request.setAttribute("list", list);
 //		response.sendRedirect("kadailist.jsp");
