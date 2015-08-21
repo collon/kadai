@@ -14,7 +14,7 @@ define([
 	 */
 	var xhr = function () {	// constructor
 		/**
-		 * ステータス
+		 * アクションステータス
 		 */
 		this.status = null;
 		/**
@@ -73,17 +73,19 @@ define([
 						_defer.rejectWith(this);
 						return;
 				}
-				// アクションステータスチェック
+				// アクションステータスのチェック
 				_this.status = jqXHR.getResponseHeader('x-custom-action-status');
 				if (_this.status < 0) {
 					// 負はアクション失敗ステータス
 					
 					// ここで、Webクライアントは共通エラーステータスチェックをしている
-					// -101ならセッションエラー→画面でメッセージも設定、など
+					// -101ならセッションエラー → 画面でメッセージも設定、など
 					
-					_this.message = json.message || '$.ajaxで成功したが、アクションステータスが負のため失敗（エラーメッセージなし）';
+					_this.message = json.message || '$.ajaxで成功したが、アクションステータスが負のため失敗（サーブレットから返されたエラーメッセージなし）';
 					_defer.rejectWith(this);
 					return;
+				} else {
+					_this.message = json.message;	// 正常の場合でもメッセージがある場合があるか？（とりあえず取得しておく）
 				}
 				// 成功
 				_defer.resolveWith(this, [json]);

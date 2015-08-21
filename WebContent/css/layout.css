@@ -31,7 +31,7 @@ body {
 }
 
 .scrollable {
-	height: calc(100% - 60px);	/* 100% - #divListFuncの高さ（＋α） */
+	height: calc(100% - 60px);	/* 100% - #divListFuncの高さ（＋α ちょっと下に余裕を持たせる） */
 	overflow: auto;
 }
 
