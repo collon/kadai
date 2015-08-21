@@ -112,5 +112,4 @@ $("#selectCategory").on({
         selectOne();
     }
 });
-
 });
