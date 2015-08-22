@@ -1,8 +1,9 @@
 require([
          'jquery',
+         'jquery.bootstrap',
          'text!html/main.html',
          'domReady!'
-], function ($, html) {
+], function ($, bootstrap, html) {
 	// bodyにmain.htmlの内容を貼り付ける
 	// TODO: 本来は、ログイン画面の削除が必要なはず
 	$(document.body).html(html);
@@ -13,7 +14,9 @@ require([
 	});
 	/**/
 	
-	/* テストコード */
+	// === 以下テストコード ===
+	
+	/* 通信テスト */
 	var $btnAdd = $('#btnAdd');
 	$btnAdd.on({
 		click: function () {
@@ -40,7 +43,6 @@ require([
 	});
 	/**/
 	
-	// === 以下テストコード ===
 	// テストテーブル表示処理
 	var $divContent = $('#divContent'),
 		_testFirstName = 'Taro',
