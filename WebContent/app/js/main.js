@@ -44,6 +44,21 @@ require([
 	/**/
 	
 	// テストテーブル表示処理
+	// DataTables版
+	require([
+	         'text!html/TableData.html',
+	         'datatables'
+	], function (data) {
+		var $table = $('#tblList');
+		$table.html(data);
+		$table.DataTable({
+			ordering: false,
+			fixedColumns: true
+		});
+	});
+	
+	// テストテーブル表示処理
+	/*
 	var $divContent = $('#divContent'),
 		_testFirstName = 'Taro',
 		_testLastName = 'Soumu',
@@ -75,6 +90,7 @@ require([
 	tableContent += '</tbody>';
 	tableContent += '</table>';
 	$divContent.html(tableContent);
+	*/
 	
 	// アクションのテスト (とりあえずsearchボタンで動作)
 	// content-typeをapplication/jsonにすると、サーブレット側での解析が面倒くさそう（まだうまくいってない）
