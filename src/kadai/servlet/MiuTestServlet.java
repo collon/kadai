@@ -46,12 +46,12 @@ public class MiuTestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		// 本当はまず、セッションチェック（ログインチェック）
+		// 譛ｬ蠖薙�ｯ縺ｾ縺壹�√そ繝�繧ｷ繝ｧ繝ｳ繝√ぉ繝�繧ｯ�ｼ医Ο繧ｰ繧､繝ｳ繝√ぉ繝�繧ｯ�ｼ�
 		
-		// カスタムヘッダーからアクション名を取得
+		// 繧ｫ繧ｹ繧ｿ繝�繝倥ャ繝�繝ｼ縺九ｉ繧｢繧ｯ繧ｷ繝ｧ繝ｳ蜷阪ｒ蜿門ｾ�
 		String strAction = request.getHeader("x-custom-action-id");
 		if (strAction == null) {
-			// アクション名がない：異常
+			// 繧｢繧ｯ繧ｷ繝ｧ繝ｳ蜷阪′縺ｪ縺�ｼ夂焚蟶ｸ
 			return;
 		}
 		

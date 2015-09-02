@@ -10,16 +10,16 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>Test</servlet-name>
-    <servlet-class>kadai.servlet.TestServlet</servlet-class>
+    <servlet-name>List</servlet-name>
+    <servlet-class>kadai.servlet.ListServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Insert</servlet-name>
     <servlet-class>kadai.servlet.InsertTaskServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Test</servlet-name>
-    <url-pattern>/Login</url-pattern>
+    <servlet-name>List</servlet-name>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Insert</servlet-name>
