@@ -43,54 +43,91 @@ require([
 	/**/
 	
 	// test grid jqgrid
-	require([
-	         'jqGrid'
-	], function (jqGrid) {
-        var mydata = [
-                      { id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
-                      { id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
-                      { id: "3", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
-                      { id: "4", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
-                      { id: "5", invdate: "2007-10-05", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
-                      { id: "6", invdate: "2007-09-06", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
-                      { id: "7", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
-                      { id: "8", invdate: "2007-10-03", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
-                      { id: "9", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" }
-               ];
-		$('#tblGrid').jqGrid({
-			styleUI: 'Bootstrap',
-			caption: '課題リスト',
-			hidrgrid: false,	// キャプション横の、隠すボタンの表示制御
-			datatype: 'json',
-			data: mydata,
-            colModel: [
-                       { label: 'Inv No', name: 'id', width: 75, key:true },
-                       { label: 'Date', name: 'invdate', width: 90 },
-                       { label: 'Client', name: 'name', width: 100 },
-                       { label: 'Amount', name: 'amount', width: 80 },
-                       { label: 'Tax', name: 'tax', width: 80 },
-                       { label: 'Total', name: 'total', width: 80 },
-                       { label: 'Notes', name: 'note', width: 150 }
-                   ],
-                   viewrecords: true, // show the current page, data rang and total records on the toolbar
-   				loadonce: true,
-   				viewrecords: true,
-                   rowNum: 10,
-                   pager: $("#divGridPager")
-               });
-   			// activate the build in search with multiple option
-//               $('#tblGrid').navGrid("#divGridPager", {                
-//                   search: true, // show search button on the toolbar
-//                   add: false,
-//                   edit: false,
-//                   del: false,
-//                   refresh: true
-//               },
-//               {}, // edit options
-//               {}, // add options
-//               {}, // delete options
-//               { multipleSearch: true } // search options - define multiple search
-//               );
+	var $btnTest01 = $('#btnTest01');
+	var $btnTest02 = $('#btnTest02');
+	var $btnTest03 = $('#btnTest03');
+	
+	$btnTest01.on({
+		click: function () {
+			/*
+			 * リスト選択時のテスト
+			 * ・カラム情報取得
+			 * ・初回表示情報取得
+			 */
+			require([
+			         'jqGrid',
+			         'js/global',
+			         'js/modules/List'
+			], function (jqGrid, g, List) {
+				/**
+				 * TODO 複数のリストをどう保持するか？
+				 */
+				var list = new List("hoge01");
+				list.getColumnInfo(function (columnInfo) {
+					// 成功
+				},
+				function () {
+					// 失敗
+				});
+				var mydata = [
+				              { id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+		                      { id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+		                      { id: "3", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+		                      { id: "4", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+		                      { id: "5", invdate: "2007-10-05", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+		                      { id: "6", invdate: "2007-09-06", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+		                      { id: "7", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+		                      { id: "8", invdate: "2007-10-03", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+		                      { id: "9", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" }
+		               ];
+				$('#tblGrid').jqGrid({
+					styleUI: 'Bootstrap',	// bootstrapスタイルのグリッド
+					hidegrid: false,	// キャプション横の、隠すボタンの表示制御
+//					datatype: 'json',
+					datatype: function (postdata) {
+					},
+					jsonreader: {
+						root: "rows",
+						total: "total",
+						page: "page",
+						records: "records",
+						id: "id",
+						cell: "cell"
+					},
+//					data: mydata,
+					url: "/kadai/MiuTestServlet",
+					mtype: "POST",
+					caption: '課題リスト',		// TODO サーブレットから取得したリスト名称を設定する
+		            colModel: [
+		                       { label: 'Inv No', name: 'id', width: 75, key:true },
+		                       { label: 'Date', name: 'invdate', width: 90 },
+		                       { label: 'Client', name: 'name', width: 100 },
+		                       { label: 'Amount', name: 'amount', width: 80 },
+		                       { label: 'Tax', name: 'tax', width: 80 },
+		                       { label: 'Total', name: 'total', width: 80 },
+		                       { label: 'Notes', name: 'note', width: 150 }
+		                   ],
+		                   viewrecords: true, // show the current page, data rang and total records on the toolbar
+		   				loadonce: false,
+		   				viewrecords: true,
+		                   rowNum: 20,
+		                   pager: $("#divGridPager")
+		               });
+		   			// activate the build in search with multiple option
+//		               $('#tblGrid').navGrid("#divGridPager", {                
+//		                   search: true, // show search button on the toolbar
+//		                   add: false,
+//		                   edit: false,
+//		                   del: false,
+//		                   refresh: true
+//		               },
+//		               {}, // edit options
+//		               {}, // add options
+//		               {}, // delete options
+//		               { multipleSearch: true } // search options - define multiple search
+//		               );
+			});
+		}
 	});
 
 	/*

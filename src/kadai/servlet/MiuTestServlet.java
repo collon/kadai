@@ -26,10 +26,20 @@ public class MiuTestServlet extends HttpServlet {
 		// public List<String> arrayUserId = null;
 		public String userId = null;
 	}
+	private class MiuRowData {
+		public String id = "";
+		public List<String> cell = new ArrayList<String>();
+		
+		public MiuRowData (String id, List<String> cells) {
+			this.id = id;
+			this.cell = cell;
+		}
+	}
 	private class MiuDataResponse {
-		public String name = null;
-		public int score = 0;
-		public List<String> yaku = new ArrayList<String>();
+		public int total = 30;
+		public int page = 3;
+		public int records = 600;
+		public List<MiuRowData> rows = new ArrayList<MiuRowData>();
 	}
 
     /**
@@ -61,17 +71,32 @@ public class MiuTestServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		switch (strAction) {
-		case "getUserInfo":
-			GetUserInfoRequest requestParam = mapper.readValue(body, GetUserInfoRequest.class);
-			System.out.println(requestParam.userId);
-			break;
+			case "getUserInfo":
+				GetUserInfoRequest requestParam = mapper.readValue(body, GetUserInfoRequest.class);
+				System.out.println(requestParam.userId);
+				break;
+			case "getColumn":
+				break;
 		}
 		
 		MiuDataResponse res = new MiuDataResponse();
+		for (int i = 0; i < 20; ++i) {
+			List<String> cell = new ArrayList<String>();
+			cell.add("id" + i);
+			cell.add("2015-09-" + i);
+			cell.add("name" + i);
+			cell.add("note" + i);
+			cell.add("amount" + i);
+			cell.add("tax" + i);
+			cell.add("total" + i);
+			res.rows.add(new MiuRowData(String.valueOf(i), cell));
+		}
+		/*
 		res.name = "miura";
 		res.score = 123;
 		res.yaku.add("neko");
 		res.yaku.add("melon");
+		*/
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(mapper.writeValueAsString(res));
