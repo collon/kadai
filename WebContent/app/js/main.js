@@ -25,7 +25,7 @@ require([
 				'js/modules/UserInfo'
 			], function (g, UserInfo) {
 				if (! g.userInfo) {	// この前にuserInfoが生成される可能性がなければ、このif文は削除する
-					g.userInfo = new UserInfo('miura');
+					g.userInfo = new UserInfo('test');
 				}
 				g.userInfo.getInfo(function (res) {	// ユーザー情報を取得
 					// 成功
