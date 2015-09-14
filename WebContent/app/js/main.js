@@ -65,6 +65,8 @@ require([
 				var list = new List("hoge01");
 				list.getColumnInfo(function (columnInfo) {
 					// 成功
+					$('#tblGrid').jpGrid({
+					});
 				},
 				function () {
 					// 失敗
@@ -86,7 +88,7 @@ require([
 //					datatype: 'json',
 					datatype: function (postdata) {
 					},
-					jsonreader: {
+					jsonReader: {
 						root: "rows",
 						total: "total",
 						page: "page",

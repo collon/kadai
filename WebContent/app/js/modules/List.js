@@ -1,8 +1,8 @@
 require([
-         'jquery',
-         'js/modules/xhr'
- ], function ($, xhr) {
-	var List = function (listId) {	// constructor
+	'jquery',
+	'js/modules/xhr'
+], function ($, xhr) {
+	var List = function () {	// constructor
 		/**
 		 * xhrオブジェクト
 		 */
@@ -16,26 +16,58 @@ require([
 		 */
 		this.message = null;
 		/**
-		 * リストid
+		 * オープン中のリストID
 		 */
-		this.listId = listId || null;
-		/**
-		 * 
-		 */
+		this.listId = null;
+	};
+	/**
+	 * リストをオープンして、必要な情報を取得する
+	 * ・サーブレットは、指定ユーザーが最後に開いたリストとして保存する？　
+	 */
+	List.prototype.open = function (listId, success, error) {
+		var _this = this;
+		_this.xhr.ajax(
+			'open',
+			{ listId: listId },
+			null,
+			function (res) {
+				// オープン成功
+				try {
+					_this.listId = listId;	// オープン中のリストのIDを更新
+					_this.status = 0;
+					if ($.isFunction(success)) {
+						success.call(_this, res);
+					}
+				} catch (e) {
+					_this.status = -1;
+					_this.message = e.message || 'その他のエラー';
+					if ($.isFunction(error)) {
+						error.call(_this);
+					}
+				}
+			},
+			function () {
+				_this.status = this.status;
+				_this.message = this.message;
+				if ($.isFunction(error)) {
+					error.call(_this);
+				}
+			}
+		);
 	};
 	/**
 	 * リストのカラム情報を取得する
 	 */
-	List.prototype.getColumnInfo = function (success, error) {
+	List.prototype.getColumnInfo = function (listId, success, error) {
 		var _this = this;
 		try {
-			if (! _this.listId) {
+			if (!listId) {
 				// リストidが設定されていない
 				throw new Error('リストIDが不明です');
 			}
 			_this.xhr.ajax(
 				'getColumnInfo',
-				{ listId: _this.listId },
+				{ listId: listId },
 				null,
 				function (res) {
 					try {
