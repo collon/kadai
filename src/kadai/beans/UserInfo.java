@@ -1,5 +1,12 @@
 package kadai.beans;
 
+import kadai.util.DBUtil;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class UserInfo {
 	
@@ -34,6 +41,31 @@ public class UserInfo {
 			return false;
 		}
 		
+		try{
+			DBUtil dbutil = new DBUtil();
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/list", "admlist", "testtest");
+
+			ResultSet rs;
+			String sql = "select * from list.userinfo ";
+			
+			Statement stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()){
+				
+				System.out.println(rs.getString("userid") + ":" + rs.getString("taskCategoryName"));
+				
+			}
+			
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//TODO:ちゃんとした認証処理にする
 		if(userId.equals("yamada")){
 			return true;
 		}

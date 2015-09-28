@@ -62,11 +62,17 @@ public class ListServlet extends HttpServlet {
 			user = new UserInfo();
 			
 			System.out.println("userId:" + request.getParameter("userId"));
+			System.out.println("password:" + request.getParameter("password"));
 			
 			if(user.login(request.getParameter("userId"),request.getParameter("password")) == true ){
 				
 				System.out.println("login success");
 				
+				String str;
+				str = JSON.encode(user); 
+				System.out.println(str);
+				out.println(str);
+
 			}else{
 				
 				System.out.println("login faiture.");
@@ -80,9 +86,6 @@ public class ListServlet extends HttpServlet {
 			
 		}
 				
-		String str="{\"userId\":\"yamada\"}";
-		System.out.println(str);
-		out.println(str);
 		
 	}
 
