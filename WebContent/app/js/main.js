@@ -62,15 +62,15 @@ require([
 				/**
 				 * TODO 複数のリストをどう保持するか？
 				 */
-				var list = new List("hoge01");
-				list.getColumnInfo(function (columnInfo) {
-					// 成功
-					$('#tblGrid').jpGrid({
-					});
-				},
-				function () {
-					// 失敗
-				});
+//				var list = new List("hoge01");
+//				list.getColumnInfo(function (columnInfo) {
+//					// 成功
+//					$('#tblGrid').jpGrid({
+//					});
+//				},
+//				function () {
+//					// 失敗
+//				});
 				var mydata = [
 				              { id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
 		                      { id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
@@ -85,9 +85,10 @@ require([
 				$('#tblGrid').jqGrid({
 					styleUI: 'Bootstrap',	// bootstrapスタイルのグリッド
 					hidegrid: false,	// キャプション横の、隠すボタンの表示制御
-//					datatype: 'json',
-					datatype: function (postdata) {
-					},
+					datatype: 'json',
+//					datatype: function (postdata) {
+//						console.log(postdata);
+//					},
 					jsonReader: {
 						root: "rows",
 						total: "total",
@@ -112,7 +113,7 @@ require([
 		                   viewrecords: true, // show the current page, data rang and total records on the toolbar
 		   				loadonce: false,
 		   				viewrecords: true,
-		                   rowNum: 20,
+		   				rowNum: 20,
 		                   pager: $("#divGridPager")
 		               });
 		   			// activate the build in search with multiple option

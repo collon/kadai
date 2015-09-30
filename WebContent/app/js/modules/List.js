@@ -21,39 +21,81 @@ require([
 		this.listId = null;
 	};
 	/**
-	 * リストをオープンして、必要な情報を取得する
-	 * ・サーブレットは、指定ユーザーが最後に開いたリストとして保存する？　
+	 * リストをオープンして、カラム情報を取得する
+	 * サーブレットは、指定ユーザーが最後に開いたリストとして保存する
+	 * @param {number} listId - 対象のリストID
 	 */
 	List.prototype.open = function (listId, success, error) {
 		var _this = this;
-		_this.xhr.ajax(
-			'open',
-			{ listId: listId },
-			null,
-			function (res) {
-				// オープン成功
-				try {
-					_this.listId = listId;	// オープン中のリストのIDを更新
-					_this.status = 0;
-					if ($.isFunction(success)) {
-						success.call(_this, res);
+		try {
+			_this.xhr.ajax(
+				'open',
+				{ listId: listId },
+				null,
+				function (res) {
+					// オープン成功
+					try {
+						_this.listId = listId;	// オープン中のリストのIDを更新
+						_this.status = 0;
+						if ($.isFunction(success)) {
+							success.call(_this, res);
+						}
+					} catch (e) {
+						_this.status = -1;
+						_this.message = e.message || 'その他のエラー';
+						if ($.isFunction(error)) {
+							error.call(_this);
+						}
 					}
-				} catch (e) {
-					_this.status = -1;
-					_this.message = e.message || 'その他のエラー';
+				},
+				function () {
+					_this.status = this.status;
+					_this.message = this.message;
 					if ($.isFunction(error)) {
 						error.call(_this);
 					}
 				}
-			},
-			function () {
-				_this.status = this.status;
-				_this.message = this.message;
-				if ($.isFunction(error)) {
-					error.call(_this);
-				}
+			);
+		} catch (e) {
+			_this.status = -1;
+			_this.message = e.message || 'その他のエラー';
+			if ($.isFunction(error)) {
+				error.call(_this);
 			}
-		);
+		}
+	};
+	/**
+	 * リストデータ取得
+	 * @param {number} [listId=this.listID] - 対象リストID
+	 * @param {number} start - 取得行の開始番号
+	 * @param {number} rows - 取得行数
+	 */
+	List.prototype.getListData = function (listId, start, rows, success, error) {
+		var _this = this;
+		try {
+			_this.xhr.ajax(
+				'getListData',
+				{listId: _this.listId, start: start, rows: rows},
+				null,
+				function (res) {
+					// 取得成功
+					
+				},
+				function () {
+					_this.status = this.status;
+					_this.message = this.message;
+					if ($.isFunction(error)) {
+						error.call(_this);
+					}
+				}
+			);
+		} catch (e) {
+			_this.status = -1;
+			_this.message = e.message || 'その他のエラー';
+			if ($.isFunction(error)) {
+				error.call(_this);
+			}
+		}
 	};
 	/**
 	 * リストのカラム情報を取得する
@@ -61,7 +103,7 @@ require([
 	List.prototype.getColumnInfo = function (listId, success, error) {
 		var _this = this;
 		try {
-			if (!listId) {
+			if (!listId) {	// TODO listidが数値なら、0のケアを考慮する必要あり
 				// リストidが設定されていない
 				throw new Error('リストIDが不明です');
 			}
