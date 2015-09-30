@@ -1,4 +1,4 @@
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav id="navNav" class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<!-- ヘッダー情報 -->
 			<div class="navbar-header">
@@ -32,14 +32,17 @@
 		</div>
 	</nav>
 	<div id="divContent" class="container">
-		<table id="tblList" class="table table-bordered"></table>
+		<div id="divTestFunc" style="margin-bottom: 10px;">
+			<button id="btnTest01" type="button" class="btn btn-default btn-sm">
+				<i class="fa fa-wrench" style="margin-right: 5px;"></i>test01
+			</button>
+			<button id="btnTest02" type="button" class="btn btn-default btn-sm">
+				<i class="fa fa-wrench" style="margin-right: 5px;"></i>test02
+			</button>
+			<button id="btnTest03" type="button" class="btn btn-default btn-sm">
+				<i class="fa fa-wrench" style="margin-right: 5px;"></i>test03
+			</button>
+		</div>
+		<table id="tblGrid"></table>
+		<div id="divGridPager"></div>
 	</div>
-<!-- 
-	<div id="divListFunc" class="container">
-		<a id="btnSearch" class="btn btn-default"><i class="fa fa-search btn-icon"></i>search</a>
-		<a id="btnAdd" class="btn btn-default"><i class="fa fa-plus btn-icon"></i>add</a>
-	</div>
-	<div class="container scrollable">
-		<div id="divContent"></div>
-	</div>
- -->
