@@ -18,7 +18,7 @@ define([
 		 */
 		this.status = null;
 		/**
-		 * エラーメッセージ
+		 * アクションのエラーメッセージ
 		 */
 		this.message = null;
 	};
@@ -47,8 +47,8 @@ define([
 			}
 		);
 		// 通信ステータス初期化
-		this.status = 0;
-		this.message = null;
+		_this.status = 0;
+		_this.message = null;
 		// ajax実行
 		$.ajax(
 			$.extend(

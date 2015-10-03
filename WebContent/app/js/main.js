@@ -23,13 +23,8 @@ require([
 				'js/global',
 				'js/modules/UserInfo'
 			], function (g, UserInfo) {
-<<<<<<< HEAD
 				if (! g.userInfo) {	// この前にuserInfoが生成される可能性がなければ、このif文は削除する
 					g.userInfo = new UserInfo('test');
-=======
-				if (! g.userInfo) {
-					g.userInfo = new UserInfo('miura');
->>>>>>> miuworking2
 				}
 				g.userInfo.getInfo(function (res) {	// ユーザー情報を取得
 					// 成功
