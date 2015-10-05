@@ -3,7 +3,7 @@ define([
 ], function ($) {
 	// ajax通信の共通設定（クラス共通設定）
 	$.ajaxSetup({
-		url: '/kadai/MiuTestServlet',						// サーブレットのアクション受け付けurl
+		url: '/kadai/list',						// サーブレットのアクション受け付けurl
 		method: 'POST',										// post
 		contentType: 'application/json;charset=UTF-8',		// json形式で送る
 		dataType: 'json',									// サーブレットからのレスポンスはjson

@@ -1,8 +1,8 @@
 require([
-         'jquery',
-         'jquery.bootstrap',
-         'text!html/main.html',
-         'domReady!'
+	'jquery',
+	'jquery.bootstrap',
+	'text!html/main.html',
+	'domReady!'
 ], function ($, bootstrap, html) {
 	// bodyにmain.htmlの内容を貼り付ける(replace)
 	$(document.body).html(html);
