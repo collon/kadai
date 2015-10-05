@@ -43,7 +43,7 @@ public class UserInfo {
 		
 		try{
 			DBUtil dbutil = new DBUtil();
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/list", "admlist", "testtest");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/list", "co", "testest");
 
 			ResultSet rs;
 			String sql = "select * from list.userinfo ";
