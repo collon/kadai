@@ -4,7 +4,6 @@ require([
          'text!html/login.html',
          'domReady!'
 ], function ($, bootstrap, html) {
-	
 	$(document.body).html(html);
 	
 	/* 通信テスト */
