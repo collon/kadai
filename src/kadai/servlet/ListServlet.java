@@ -71,7 +71,7 @@ public class ListServlet extends HttpServlet {
 				
 				String str;
 				str = JSON.encode(user); 
-				System.out.println(str);
+//				System.out.println(str);
 				out.println(str);
 
 			}else{
@@ -79,7 +79,7 @@ public class ListServlet extends HttpServlet {
 				System.out.println("login faiture.");
 			}
 			
-			System.out.println(request.getParameter("userId"));
+//			System.out.println(request.getParameter("userId"));
 			
 			
 

@@ -9,6 +9,7 @@ require.config({
 		'jqGrid': 'lib/Guriddo_jqGrid_JS_5/js/jquery.jqGrid.min',
 //		'datatables': 'lib/DataTables/datatables.min',
 //		'w2ui': 'lib/w2ui-1/w2ui-1.4.3.min',
+		'sha256':'lib/sha256',
 		'js': 'js',
 		'html': 'html'
 	},

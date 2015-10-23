@@ -2,7 +2,6 @@ package kadai.beans;
 
 import kadai.util.DBUtil;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,24 +41,30 @@ public class UserInfo {
 		}
 		
 		try{
+			Class.forName("com.mysql.jdbc.Driver");
 			DBUtil dbutil = new DBUtil();
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/list", "co", "testest");
+//			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/list", "co", "testest");
+			Connection conn = dbutil.getConn();
 
 			ResultSet rs;
 			String sql = "select * from list.userinfo ";
+			sql +=  " where userid = \'" + this.userId + "\'";
 			
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
 				
-				System.out.println(rs.getString("userid") + ":" + rs.getString("taskCategoryName"));
+				System.out.println(rs.getString("userid"));
 				
 			}
 			
 			conn.close();
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -8,9 +8,9 @@ public class DBUtil {
 	
 	private Connection conn;
 	
-	private String dbname="jdbc:mysql://localhost/test";
-	private String user="test1";
-	private String passwd="test1";
+	private String dbname="jdbc:mysql://localhost/list";
+	private String user="co";
+	private String passwd="testest";
 	
 	public DBUtil() {
 	
@@ -18,8 +18,8 @@ public class DBUtil {
 	
 	public Connection getConn(){
 		
-		//jdbcƒhƒ‰ƒCƒo
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -47,7 +47,7 @@ public class DBUtil {
 	}
 	
 	public DBUtil getInstance(){
-		return this.instance;
+		return DBUtil.instance;
 	}
 	
 

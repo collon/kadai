@@ -8589,12 +8589,12 @@ var w2confirm = function (msg, title, callBack) {
                         if (typeof options.callBack == 'function') options.callBack('Yes');
                         if (typeof options.yes_callBack == 'function') options.yes_callBack();
                         w2popup.message();
-                        break
+                        break;
                     case 27: // esc
                         if (typeof options.callBack == 'function') options.callBack('No');
                         if (typeof options.no_callBack == 'function') options.no_callBack();
                         w2popup.message();
-                        break
+                        break;
                 }
             }
         });

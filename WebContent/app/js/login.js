@@ -1,6 +1,7 @@
 require([
          'jquery',
          'jquery.bootstrap',
+         'sha256',
          'text!html/login.html',
          'domReady!'
 ], function ($, bootstrap, html) {
@@ -10,6 +11,10 @@ require([
 	var $btnAdd = $('#btnLogin');
 	$btnAdd.on({
 		click: function () {
+			
+			var shaPwd = new jsSHA($('#tbxPassword').val(), "ASCII");
+			var valSha256 = shaPwd.getHash("SHA-256", "HEX");
+//			password: $('#tbxPassword').val()
 						
     		$.ajax({
     			url:"list",
@@ -18,7 +23,7 @@ require([
     			dataType:"json",
     			data:{
     				userId: $('#tbxUserId').val(),
-    				password: $('#tbxPassword').val()
+    				password: valSha256
     			},
     			cache:false,
     			success:function(json){				
