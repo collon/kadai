@@ -36,6 +36,7 @@ public class UserInfo {
 	 */
 	public boolean login(){
 		
+		//値の異常を確認する
 		if(userId == null){
 			return false;
 		}
@@ -56,6 +57,8 @@ public class UserInfo {
 			while(rs.next()){
 				
 				System.out.println(rs.getString("userid"));
+				
+				
 				
 			}
 			
